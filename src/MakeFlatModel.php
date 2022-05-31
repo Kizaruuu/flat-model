@@ -13,7 +13,7 @@ class MakeFlatModel extends Command
      *
      * @var string
      */
-    protected $signature = 'make:c-model {name} {--entity=}';
+    protected $signature = 'make:c-model {name} {--table=}';
 
     /**
      * @var array
