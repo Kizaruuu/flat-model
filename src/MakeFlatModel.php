@@ -50,7 +50,7 @@ class MakeFlatModel extends Command
     public function handle()
     {
         $model = trim($this->argument('name'), '"\'');
-        $entity = $this->option('entity');
+        $entity = $this->option('table');
 
         try {
             if (empty($model)) {
