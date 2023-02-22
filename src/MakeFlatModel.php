@@ -182,13 +182,6 @@ class $modelName extends BaseModel
     protected \$primaryKey = '$primaryKey';
 
     /**
-     * The flag to determine the model need to format created_at field or not.
-     *
-     * @var string \$needFormatCreatedAt
-     */
-    protected \$needFormatCreatedAt = false;
-
-    /**
      * The attributes that are mass assignable.
      *
      * @var array
