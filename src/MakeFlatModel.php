@@ -25,6 +25,8 @@ class MakeFlatModel extends Command
      */
     protected $schema = [];
 
+    protected $primaryKey = '';
+
     /**
      * The console command description.
      *
@@ -86,6 +88,9 @@ class MakeFlatModel extends Command
         while ($row = $data->fetch(PDO::FETCH_ASSOC)) {
             $this->schema[] = $row["Field"];
             $this->types[$row["Field"]] = $this->getType($row["Type"]);
+            if ($row['Key'] === 'PRI') {
+                $this->primaryKey = $row['Field'];
+            }
         }
     }
 
@@ -129,7 +134,7 @@ class MakeFlatModel extends Command
         $primaryKey = $this->getPrimaryKey();
         $schema = $this->getSchema();
 
-        if (! empty($primaryKey)) {
+        if (!empty($primaryKey) && !empty(array_keys($schema, $primaryKey))) {
             unset($schema[array_keys($schema, $primaryKey)[0]]);
         }
 
@@ -268,7 +273,11 @@ CONTENT;
      */
     protected function getPrimaryKey(): string
     {
-        return 'id';
+        if ($this->primaryKey) return $this->primaryKey;
+        
+        if (array_key_exists('id', $this->schema)) return 'id';
+        
+        return '';
     }
 
     /**
