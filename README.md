@@ -1,5 +1,5 @@
 # flat-model
-Quick create Laravel model
+Quick create Laravel model, resource and request
 
 ## Installation
 
