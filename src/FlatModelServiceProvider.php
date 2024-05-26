@@ -21,6 +21,8 @@ class FlatModelServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 MakeFlatModel::class,
+                MakeFlatResource::class,
+                MakeFlatRequest::class,
             ]);
         }
     }

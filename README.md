@@ -14,3 +14,9 @@ composer require nguyenle/flat-model
 ```bash
 php artisan make:c-model {name} {--table=}
 ```
+```bash
+php artisan make:c-resource {name} {--table=}
+```
+```bash
+php artisan make:c-request {name} {--table=}
+```
