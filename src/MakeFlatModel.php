@@ -2,6 +2,8 @@
 
 namespace Kizaru\FlatModel;
 
+use Illuminate\Support\Str;
+
 class MakeFlatModel extends BaseCommand
 {
     /**
@@ -26,7 +28,7 @@ class MakeFlatModel extends BaseCommand
     public function handle()
     {
         $model = trim($this->argument('name'), '"\'');
-        $entity = $this->option('table');
+        $entity = $this->option('table') ?? Str::plural(Str::snake($model));
 
         try {
             if (empty($model)) {

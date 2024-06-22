@@ -4,6 +4,7 @@ namespace Kizaru\FlatModel;
 
 
 use Exception;
+use Illuminate\Support\Str;
 
 class MakeFlatRequest extends BaseCommand
 {
@@ -51,7 +52,7 @@ class MakeFlatRequest extends BaseCommand
     public function handle()
     {
         $request = trim($this->argument('name'), '"\'');
-        $entity = $this->option('table');
+        $entity = $this->option('table') ?? Str::plural(Str::snake($request));
 
         try {
             if (empty($request)) {

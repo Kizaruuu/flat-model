@@ -3,6 +3,7 @@
 namespace Kizaru\FlatModel;
 
 use Exception;
+use Illuminate\Support\Str;
 
 class MakeFlatResource extends BaseCommand
 {
@@ -50,7 +51,7 @@ class MakeFlatResource extends BaseCommand
     public function handle()
     {
         $resource = trim($this->argument('name'), '"\'');
-        $entity = $this->option('table');
+        $entity = $this->option('table') ?? Str::plural(Str::snake($resource));
 
         try {
             if (empty($resource)) {
