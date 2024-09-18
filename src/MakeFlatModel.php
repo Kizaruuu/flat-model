@@ -72,6 +72,15 @@ class MakeFlatModel extends BaseCommand
         $primaryKey = $this->getPrimaryKey();
         $schema = $this->getSchema();
 
+        $consts = [];
+        foreach ($schema as $key) {
+            $upper = Str::upper($key);
+            $consts[] = <<<CONTENT
+const $upper = '$key';
+CONTENT;
+        }
+        $consts = implode("\n\t", $consts);
+
         if (!empty($primaryKey) && !empty(array_keys($schema, $primaryKey))) {
             unset($schema[array_keys($schema, $primaryKey)[0]]);
         }
@@ -123,6 +132,10 @@ class $modelName extends BaseModel
      * @var string \$primaryKey
      */
     protected \$primaryKey = '$primaryKey';
+
+    # [auto-gen-attribute]
+    $consts
+    # [/auto-gen-attribute]
 
     /**
      * The attributes that are mass assignable.
