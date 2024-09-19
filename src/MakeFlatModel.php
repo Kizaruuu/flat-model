@@ -74,9 +74,8 @@ class MakeFlatModel extends BaseCommand
 
         $consts = [];
         foreach ($schema as $key) {
-            $upper = Str::upper($key);
             $consts[] = <<<CONTENT
-const $upper = '$key';
+const $key = '$key';
 CONTENT;
         }
         $consts = implode("\n\t", $consts);
