@@ -1,0 +1,23 @@
+{
+    "name": "nguyenle/flat-model",
+    "description": "Quick & easy to generate model",
+    "authors": [
+        {
+            "name": "Nguyenle",
+            "email": "quocviet191097@gmail.com"
+        }
+    ],
+    "require": {},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Kizaru\\FlatModel\\FlatModelServiceProvider"
+            ]
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Kizaru\\FlatModel\\": "src/"
+        }
+    }
+}
