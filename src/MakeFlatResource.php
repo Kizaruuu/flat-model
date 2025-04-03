@@ -51,7 +51,7 @@ class MakeFlatResource extends BaseCommand
     public function handle()
     {
         $resource = trim($this->argument('name'), '"\'');
-        $entity = $this->option('table') ?? Str::plural(Str::snake($resource));
+        $entity = $this->getTableName($resource);
 
         try {
             if (empty($resource)) {

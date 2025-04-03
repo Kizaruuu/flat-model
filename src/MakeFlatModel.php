@@ -28,7 +28,7 @@ class MakeFlatModel extends BaseCommand
     public function handle()
     {
         $model = trim($this->argument('name'), '"\'');
-        $entity = $this->option('table') ?? Str::plural(Str::snake($model));
+        $entity = $this->getTableName($model);
 
         try {
             if (empty($model)) {

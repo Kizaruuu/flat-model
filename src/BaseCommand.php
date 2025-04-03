@@ -4,6 +4,7 @@ namespace Kizaru\FlatModel;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use PDO;
 
 class BaseCommand extends Command
@@ -28,6 +29,14 @@ class BaseCommand extends Command
     public function __construct()
     {
         parent::__construct();
+    }
+
+    public function getTableName(string $entity)
+    {
+        if ($this->option('table')) return $this->option('table');
+
+        $arr = explode('/', $entity);
+        return $this->option('table') ?? Str::plural(Str::snake(array_pop($arr)));
     }
 
     public function initEntity(string $table)
